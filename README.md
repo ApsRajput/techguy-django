@@ -19,4 +19,9 @@ $ python3 manage.py migrate
 $ python3 manage.py runserver
 ```
 
+##Django Mail
+- less secure app access should be ON
+###Part 1 : Pass argument in route
+###Part 2 : Used django forms for mail
+
 ## HAPPY CODING
