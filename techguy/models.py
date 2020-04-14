@@ -27,3 +27,4 @@ class Techguy(models.Model):
 
     def __str__(self):
         return self.title
+

@@ -7,7 +7,7 @@
         <h1>{{ blog.title }}</h1>
         <p class=" text-muted">{{ blog.technology }} | {{ blog.created_on }}</p>
         <p class="card-text ">{{ blog.description | safe }}</p>
-        <a href="{% url 'mail' blog.email  %}"><button>Email this person</button></a>
+        <a href="{% url 'mail' %}"><button>Email this person</button></a>
       </div>
     </div>
   </div>

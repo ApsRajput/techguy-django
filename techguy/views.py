@@ -1,39 +1,26 @@
 from django.shortcuts import render
-from techguy.models import Techguy
+from techguy.models import Techguy, Category
 from django.core.mail import BadHeaderError, send_mail
 from django.http import HttpResponse, HttpResponseRedirect
 from .forms import ContactForm
+from django.views.generic import ListView, DetailView
 
 # Create your views here.
 
-def index(request):
-    blogs = Techguy.objects.all()
-    context = {'blogs' : blogs}
-    return render(request, 'index.html', context)
+class TechguyListView(ListView):
+    model = Techguy
+    template_name = 'index.html'
+    context_object_name = 'blogs'
 
-def detail(request, pk):
-    blog = Techguy.objects.get(pk=pk)
-    context={'blog' : blog}
-    return render(request, 'detail.html', context)
+class TechguyDetailView(DetailView):
+    model = Techguy
+    template_name = 'detail.html'
+    context_object_name = 'blog'
 
-# def mail(request):
-    # # subject = request.POST.get('subject', '')
-    # # message = request.POST.get('message', '')
-    # # from_email = request.POST.get('from_email', '')
-
-    # subject = 'django function mail'
-    # message = 'django function mail success'
-    # from_email = 'webshot.tech@gmail.com'
-    # if subject and message and from_email:
-    #     try:
-    #         send_mail(subject, message, from_email, ['apsrajput008@gmail.com'])
-    #     except BadHeaderError:
-    #         return HttpResponse('Invalid header found.')
-    #     return HttpResponseRedirect('/techguy/')
-    # else:
-    #     # In reality we'd use a form class
-    #     # to get proper validation errors.
-    #     return HttpResponse('Make sure all fields are entered and valid.')
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['category'] = Category.objects.all()
+        return context
 
 def mail(request):
     if request.method == 'GET':
