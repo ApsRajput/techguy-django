@@ -1,8 +1,8 @@
 from django.urls import path
-from . import views
+from .views import TechguyListView,TechguyDetailView, mail
 
 urlpatterns =[
-    path("", views.index, name="index"),
-    path("<int:pk>/", views.detail, name="detail"),
-    path("mail/", views.mail, name="mail"),
+    path("", TechguyListView.as_view(), name="index"),
+    path("<int:pk>/", TechguyDetailView.as_view(), name="TechguyDetailView"),
+    path("mail/", mail, name="mail"),
 ]

@@ -40,7 +40,13 @@
                     <h2 class="card-title">{{ post.title }}</h2>
                     <p class="card-text text-muted h6">{{ post.technology }} | {{ post.created_on}} </p>
                     <p class="card-text">{{post.description|slice:":200" }}</p>
-                    <a href="{% url 'detail' post.pk  %}" class="btn btn-primary">Read More &rarr;</a>
+                    <a href="{% url 'TechguyDetailView' post.pk  %}" class="btn btn-primary">Read More &rarr;</a>
+                    {{ category }}
+
+                   {% for cat in category %} <p>
+                        {{ cat }}
+                    </p>
+                    {% endfor %}
                 </div>
             </div>
             {% endfor %}
