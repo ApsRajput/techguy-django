@@ -16,6 +16,7 @@ class TechguyDetailView(DetailView):
     model = Techguy
     template_name = 'detail.html'
     context_object_name = 'blog'
+    slug_url_kwarg = 'slug'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

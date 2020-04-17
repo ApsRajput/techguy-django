@@ -4,3 +4,4 @@ node_modules/
 build/
 db.sqlite3
 img/
+techguy/migrations
