@@ -2,7 +2,7 @@ from django.urls import path
 from .views import TechguyListView,TechguyDetailView, mail
 
 urlpatterns =[
-    path("", TechguyListView.as_view(), name="index"),
-    path("<slug:slug>/", TechguyDetailView.as_view(), name="TechguyDetailView"),
+    path("", TechguyListView, name="index"),
+    path("<int:pk>/", TechguyDetailView, name="TechguyDetailView"),
     path("mail/", mail, name="mail"),
 ]

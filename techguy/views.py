@@ -4,6 +4,7 @@ from django.core.mail import BadHeaderError, send_mail
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from .forms import ContactForm
 from django.views.generic import ListView, DetailView
+from django.shortcuts import render, get_object_or_404
 
 # Create your views here.
 
@@ -23,16 +24,35 @@ def TechguyListView(request):
             }
     return JsonResponse(data)
 
-class TechguyDetailView(DetailView):
-    model = Techguy
-    template_name = 'detail.html'
-    context_object_name = 'blog'
-    slug_url_kwarg = 'slug'
+    data = { "results" : {
+        "title" : blogs.title,
+        "description" : blogs.description,
+        "slug" : blogs.slug,
+        "technology" : blogs.technology,
+        }
+    }
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['category'] = Category.objects.all()
-        return context
+# class TechguyDetailView(DetailView):
+#     model = Techguy
+#     template_name = 'detail.html'
+#     context_object_name = 'blog'
+#     slug_url_kwarg = 'slug'
+
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context['category'] = Category.objects.all()
+#         return context
+
+def TechguyDetailView(request, pk):
+    techguy = get_object_or_404(Techguy, pk=pk)
+    data = { "results" : {
+        "title" : techguy.title,
+        "description" : techguy.description,
+        "slug" : techguy.slug,
+        "technology" : techguy.technology,
+        }
+    }
+    return JsonResponse(data)
 
 def mail(request):
     if request.method == 'GET':
