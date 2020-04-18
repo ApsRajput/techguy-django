@@ -20,5 +20,5 @@ from techguy.views import TechguyListView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("techguy/", include("techguy.urls")),
-    path("", TechguyListView.as_view(), name='index')
+    path("", TechguyListView, name='index')
 ]

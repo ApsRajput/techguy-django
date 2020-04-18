@@ -1,16 +1,27 @@
 from django.shortcuts import render
 from techguy.models import Techguy, Category
 from django.core.mail import BadHeaderError, send_mail
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from .forms import ContactForm
 from django.views.generic import ListView, DetailView
 
 # Create your views here.
 
-class TechguyListView(ListView):
-    model = Techguy
-    template_name = 'index.html'
-    context_object_name = 'blogs'
+# class TechguyListView(ListView):
+#     model = Techguy
+#     template_name = 'index.html'
+#     context_object_name = 'blogs'
+
+def TechguyListView(request):
+    blogs = Techguy.objects.all()
+    data = {"results": 
+        list(blogs.values(
+            "title",
+            "description",
+            "slug",
+            "technology"))
+            }
+    return JsonResponse(data)
 
 class TechguyDetailView(DetailView):
     model = Techguy
