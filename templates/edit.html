@@ -1,0 +1,45 @@
+{% extends 'base.html' %} {% block content %}
+
+<form method="POST" class="post-form" action="/techguy/update/{{techguy.id}}">  
+        {% csrf_token %}  
+    <div class="container">  
+<br>  
+    <div class="form-group row">  
+    <label class="col-sm-1 col-form-label"></label>  
+    <div class="col-sm-4">  
+    <h3>Update Details</h3>  
+    </div>  
+  </div>  
+    <div class="form-group row">  
+    <label class="col-sm-2 col-form-label">title :</label>  
+    <div class="col-sm-4">  
+        <input type="text" name="title" id="id_title" required maxlength="200" value="{{ techguy.title }}"/>  
+    </div>  
+  </div>  
+  <div class="form-group row">  
+    <label class="col-sm-2 col-form-label">description :</label>  
+    <div class="col-sm-4">  
+        <input type="text" name="description" id="id_description" required maxlength="100" value="{{ techguy.description }}" />  
+    </div>  
+  </div>  
+    <div class="form-group row">  
+    <label class="col-sm-2 col-form-label">technology :</label>  
+    <div class="col-sm-4">  
+        <input type="text" name="technology" id="id_technology" required maxlength="254" value="{{ techguy.technology }}" />  
+    </div>  
+  </div>  
+    <div class="form-group row">  
+    <label class="col-sm-2 col-form-label">email :</label>  
+    <div class="col-sm-4">  
+        <input type="email" name="email" id="id_email" required maxlength="100" value="{{ techguy.email }}" />  
+    </div>  
+  </div>  
+    <div class="form-group row">  
+    <label class="col-sm-1 col-form-label"></label>  
+    <div class="col-sm-4">  
+    <button type="submit" class="btn btn-success">Update</button>  
+    </div>  
+  </div>  
+    </div>  
+</form>  
+{% endblock content %}

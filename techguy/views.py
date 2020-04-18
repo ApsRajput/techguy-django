@@ -1,36 +1,17 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from techguy.models import Techguy, Category
 from django.core.mail import BadHeaderError, send_mail
-from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
-from .forms import ContactForm
+from django.http import HttpResponse, HttpResponseRedirect
+from .forms import ContactForm, TechguyForm
 from django.views.generic import ListView, DetailView
-from django.shortcuts import render, get_object_or_404
 
 # Create your views here.
 
+#Generic Classes
 # class TechguyListView(ListView):
 #     model = Techguy
 #     template_name = 'index.html'
 #     context_object_name = 'blogs'
-
-def TechguyListView(request):
-    blogs = Techguy.objects.all()
-    data = {"results": 
-        list(blogs.values(
-            "title",
-            "description",
-            "slug",
-            "technology"))
-            }
-    return JsonResponse(data)
-
-    data = { "results" : {
-        "title" : blogs.title,
-        "description" : blogs.description,
-        "slug" : blogs.slug,
-        "technology" : blogs.technology,
-        }
-    }
 
 # class TechguyDetailView(DetailView):
 #     model = Techguy
@@ -43,16 +24,40 @@ def TechguyListView(request):
 #         context['category'] = Category.objects.all()
 #         return context
 
-def TechguyDetailView(request, pk):
-    techguy = get_object_or_404(Techguy, pk=pk)
-    data = { "results" : {
-        "title" : techguy.title,
-        "description" : techguy.description,
-        "slug" : techguy.slug,
-        "technology" : techguy.technology,
-        }
-    }
-    return JsonResponse(data)
+#Simple Crud Operations
+def create(request):
+    if request.method == "Post":
+        form = TechguyForm(request.POST)
+        if form.is_valid():
+            try:
+                form.save()
+                return redirect('/index.html')
+            except:
+                pass
+    else:
+        form = TechguyForm()
+    return render(request, 'create.html', {'form':form})
+
+def show(request):
+    techguy = Techguy.objects.all()
+    return render(request, 'index.html', {'techguy':techguy})
+
+def edit(request, id):  
+    techguy = Techguy.objects.get(id=id)  
+    return render(request,'edit.html', {'techguy':techguy})
+
+def update(request, id):  
+    techguy = Techguy.objects.get(id=id)  
+    form = TechguyForm(request.POST, instance = techguy)  
+    if form.is_valid():  
+        form.save()
+        return redirect("/index")  
+    return render(request, 'edit.html', {'techguy': techguy})
+
+def destroy(request, id):  
+    techguy = Techguy.objects.get(id=id)  
+    techguy.delete()  
+    return redirect("/index.html")  
 
 def mail(request):
     if request.method == 'GET':
