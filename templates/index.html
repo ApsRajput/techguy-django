@@ -34,13 +34,13 @@
     <div class="row">
         <!-- Blog Entries Column -->
         <div class="col-md-8 mt-3 left">
-            {% for post in blogs %}
+            {% for post in techguy %}
             <div class="card mb-4">
                 <div class="card-body">
                     <h2 class="card-title">{{ post.title }}</h2>
                     <p class="card-text text-muted h6">{{ post.technology }} | {{ post.created_on}} </p>
                     <p class="card-text">{{post.description|slice:":200" }}</p>
-                    <a href="{% url 'TechguyDetailView' post.slug  %}" class="btn btn-primary">Read More &rarr;</a>
+                    {% comment %} <a href="{% url 'TechguyDetailView' post.slug  %}" class="btn btn-primary">Read More &rarr;</a> {% endcomment %}
                     {{ category }}
 
                    {% for cat in category %} <p>
@@ -49,6 +49,8 @@
                     {% endfor %}
                 </div>
             </div>
+            <a href="techguy/edit/{{ post.id }}"><span class="glyphicon glyphicon-pencil" >Edit</span></a>  
+            <a href="techguy/delete/{{ post.id }}">Delete</a>  
             {% endfor %}
         </div>
         
