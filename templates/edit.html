@@ -1,6 +1,9 @@
 {% extends 'base.html' %} {% block content %}
-
-<form method="POST" class="post-form" action="/techguy/update/{{techguy.id}}">  
+{{ formset.errors }}
+{{ formset.non_field_errors }}
+{{ form.errors }}
+{{ form.non_field_errors }}
+<form method="POST" class="post-form" action="/techguy/update/{{ techguy.id }}">  
         {% csrf_token %}  
     <div class="container">  
 <br>  

@@ -4,6 +4,7 @@ from django.core.mail import BadHeaderError, send_mail
 from django.http import HttpResponse, HttpResponseRedirect
 from .forms import ContactForm, TechguyForm
 from django.views.generic import ListView, DetailView
+import pprint
 
 # Create your views here.
 
@@ -26,14 +27,11 @@ from django.views.generic import ListView, DetailView
 
 #Simple Crud Operations
 def create(request):
-    if request.method == "Post":
+    if request.method == "POST":
         form = TechguyForm(request.POST)
         if form.is_valid():
-            try:
-                form.save()
-                return redirect('/index.html')
-            except:
-                pass
+            form.save()
+            return redirect('/')
     else:
         form = TechguyForm()
     return render(request, 'create.html', {'form':form})
@@ -47,17 +45,17 @@ def edit(request, id):
     return render(request,'edit.html', {'techguy':techguy})
 
 def update(request, id):  
-    techguy = Techguy.objects.get(id=id)  
-    form = TechguyForm(request.POST, instance = techguy)  
-    if form.is_valid():  
+    techguy = Techguy.objects.get(id=id)
+    form = TechguyForm(request.POST, instance = techguy)
+    if form.is_valid():
         form.save()
-        return redirect("/index")  
+        return redirect("/")
     return render(request, 'edit.html', {'techguy': techguy})
 
 def destroy(request, id):  
     techguy = Techguy.objects.get(id=id)  
     techguy.delete()  
-    return redirect("/index.html")  
+    return redirect("/")  
 
 def mail(request):
     if request.method == 'GET':

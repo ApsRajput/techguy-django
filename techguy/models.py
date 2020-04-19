@@ -19,12 +19,12 @@ class Category(models.Model):
 class Techguy(models.Model):
     title = models.CharField(max_length=100, unique=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE, blank=True, null=True)
-    slug = models.SlugField(max_length=100, unique=True)
+    # slug = models.SlugField(max_length=100, unique=True)
     description = models.TextField()
     technology = models.CharField(max_length=20)
     email = models.CharField(max_length=40, null=True)
-    # category = models.ManyToManyField('Category', related_name='posts', blank=True)
-    status = models.IntegerField(choices=STATUS, default=0)
+    category = models.ManyToManyField('Category', related_name='posts', blank=True)
+    # status = models.IntegerField(choices=STATUS, default=0)
     created_on = models.DateTimeField(auto_now_add=True)
 
     class Meta:

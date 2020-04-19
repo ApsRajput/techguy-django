@@ -4,10 +4,10 @@ from django.contrib import admin
 from techguy.models import Techguy, Category
 
 class TechguyAdmin(admin.ModelAdmin):
-    list_display = ('title', 'status','created_on')
-    list_filter = ("status",)
+    list_display = ('title', 'created_on')
+    # list_filter = ("status",)
     search_fields = ['title', 'description']
-    prepopulated_fields = {'slug': ('title',)}
+    # prepopulated_fields = {'slug': ('title',)}
 
 class CategoryAdmin(admin.ModelAdmin):
     pass
