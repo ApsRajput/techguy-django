@@ -1,6 +1,5 @@
-# Django 2.0+ project template
-
-This is a simple Django 2.0+ project template with my preferred setup.
+# Django 2.0+ required
+# python3
 
 ## Features
 
@@ -13,7 +12,7 @@ This is a simple Django 2.0+ project template with my preferred setup.
 ```bash
 $ git clone
 $ install env via pip
-$ pip install requirements.txt
+$ pip install -r requirements.txt
 $ python3 manage.py makemigrations
 $ python3 manage.py migrate
 $ python3 manage.py runserver
