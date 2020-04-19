@@ -19,7 +19,7 @@ class Category(models.Model):
 class Techguy(models.Model):
     title = models.CharField(max_length=100, unique=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE, blank=True, null=True)
-    # slug = models.SlugField(max_length=100, unique=True)
+    slug = models.SlugField(default='',max_length=100)
     description = models.TextField()
     technology = models.CharField(max_length=20)
     email = models.CharField(max_length=40, null=True)
@@ -32,6 +32,13 @@ class Techguy(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        kwargs = {
+            'pk': self.id,
+            'slug': self.slug
+        }
+        return reverse('article-pk-slug-detail', kwargs=kwargs)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
