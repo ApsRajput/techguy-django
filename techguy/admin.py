@@ -7,7 +7,7 @@ class TechguyAdmin(admin.ModelAdmin):
     list_display = ('title', 'created_on')
     # list_filter = ("status",)
     search_fields = ['title', 'description']
-    # prepopulated_fields = {'slug': ('title',)}
+    prepopulated_fields = {'slug': ('title',)}
 
 class CategoryAdmin(admin.ModelAdmin):
     pass

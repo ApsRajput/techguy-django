@@ -34,6 +34,7 @@
     <div class="row">
         <!-- Blog Entries Column -->
         <div class="col-md-8 mt-3 left">
+            <a href="techguy/create"><span class="glyphicon glyphicon-pencil" >Add</span></a>  
             {% for post in techguy %}
             <div class="card mb-4">
                 <div class="card-body">
@@ -49,7 +50,7 @@
                     {% endfor %}
                 </div>
             </div>
-            <a href="/techguy/edit/{{ post.id }}"><span class="glyphicon glyphicon-pencil" >Edit</span></a>  
+            <a href="techguy/edit/{{ post.id }}"><span class="glyphicon glyphicon-pencil" >Edit</span></a>  
             <a href="techguy/delete/{{ post.id }}">Delete</a>  
             {% endfor %}
         </div>
