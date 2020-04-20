@@ -24,4 +24,7 @@ $ python3 manage.py runserver
 ###Part 1 : Pass argument in route
 ###Part 2 : Used django forms for mail
 
+##Auth
+-to secure listing from unauth users
+
 ## HAPPY CODING
