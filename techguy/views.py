@@ -4,10 +4,13 @@ from django.core.mail import BadHeaderError, send_mail
 from django.http import HttpResponse, HttpResponseRedirect
 from .forms import ContactForm, TechguyForm
 from django.views.generic import ListView, DetailView
-import pprint
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
-
+#Auth
+# class MyView(LoginRequiredMixin, View):
+#     login_url = '/login/'
+#     redirect_field_name = 'redirect_to'
 #Generic Classes
 # class TechguyListView(ListView):
 #     model = Techguy
@@ -36,6 +39,7 @@ def create(request):
         form = TechguyForm()
     return render(request, 'create.html', {'form':form})
 
+@login_required
 def show(request):
     techguy = Techguy.objects.all()
     return render(request, 'index.html', {'techguy':techguy})
