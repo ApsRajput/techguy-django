@@ -140,34 +140,35 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # Database Caching 
-CACHES = {
-    'default':{
-        'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
-        'LOCATION': 'webshot_cache',
-    }
+# CACHES = {
+#     'default':{
+#         'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
+#         'LOCATION': 'webshot_cache',
+#     }
 
 #File System Cache
-CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
-        'LOCATION': 'D:Django_Projects/webshot/Cache',
-    }
+# CACHES = {
+#     'default': {
+#         'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+#         'LOCATION': 'D:Django_Projects/webshot/Cache',
+#     }
 
 #best #Local Memory Cache
-CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
-        'LOCATION': 'webshot',
-        'TIMEOUT' : 500,
-        'OPTIONS' : {
-            'MAX_ENTRIES' : 10,
-            'CULL_FREQUENCY' : 1,
-        }
-    }
-}
+# CACHES = {
+#     'default': {
+#         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+#         'LOCATION': 'webshot',
+#         'TIMEOUT' : 500,
+#         'OPTIONS' : {
+#             'MAX_ENTRIES' : 10,
+#             'CULL_FREQUENCY' : 1,
+#         }
+#     }
+# }
 
 #Dummy Caching
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
     }
+}

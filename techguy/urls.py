@@ -14,4 +14,8 @@ urlpatterns =[
     path('cookie', views.showcookie, name="cookie"),
     path('visitcookie', views.visitcookie, name="visitcookie"),
     path('deletecookie', views.deletecookie, name="deletecookie"),
+
+    # Sessions
+    path('createsession/', views.create_session),
+    path('accesssession', views.access_session),
 ]
