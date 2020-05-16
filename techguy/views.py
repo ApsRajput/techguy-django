@@ -6,6 +6,9 @@ from .forms import ContactForm, TechguyForm
 from django.views.generic import ListView, DetailView
 from django.contrib.auth.decorators import login_required
 
+#View Caching
+# from django.views.decorators.cache import cache_page
+
 # Create your views here.
 #Auth
 # class MyView(LoginRequiredMixin, View):
@@ -39,6 +42,7 @@ def create(request):
         form = TechguyForm()
     return render(request, 'create.html', {'form':form})
 
+# cache_page(200)
 @login_required
 def show(request):
     techguy = Techguy.objects.all()
