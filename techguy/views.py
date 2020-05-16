@@ -76,3 +76,32 @@ def mail(request):
                 return HttpResponse('Invalid header found.')
             return HttpResponseRedirect('/techguy/mail/')
     return render(request, "contact.html", {'form': form})
+
+# using cookie
+def showcookie(request):
+    show = request.COOKIES['webshot']
+    visit = request.COOKIES['visits']
+    html = "<center> New Page <br>{0}</center>".format(show)
+    return HttpResponse(html)
+
+# user visit
+def visitcookie(request):
+    html = HttpResponse("<h1>WebShot Django Tutorial</h1>")
+    if request.COOKIES.get('visits'):
+        html.set_cookie('webshot', 'Welcome Back')
+        value = int(request.COOKIES.get('visits'))
+        html.set_cookie('visits', value + 1)
+    else:
+        value = 1
+        text = "Welcome for the first time"
+        html.set_cookie('visits', value)
+        html.set_cookie('webshot', text)
+    return html
+
+def deletecookie(request):
+    if request.COOKIES.get('visits'):
+       response = HttpResponse("<h1>Webshot<br>Cookie deleted</h1>")
+       response.delete_cookie("visits")
+    else:
+        response = HttpResponse("<h1>Webshot</h1>need to create cookie before deleting")
+    return response
