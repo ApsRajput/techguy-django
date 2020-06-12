@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from techguy.models import Techguy, Category
+from techguy.models import Techguy, Category, Customer
 from django.core.mail import BadHeaderError, send_mail
 from django.http import HttpResponse, HttpResponseRedirect
 from .forms import ContactForm, TechguyForm
@@ -128,3 +128,10 @@ def access_session(request):
 
 def index(request):
     return render(request, 'order/index.html')
+
+def customers(request):
+    customers = Customer.objects.all()
+    context = {
+        "customers" : customers
+    }
+    return render(request, 'order/customers.html', context)

@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from techguy.models import Techguy, Category
+from techguy.models import Techguy, Category, Customer
 
 class TechguyAdmin(admin.ModelAdmin):
     list_display = ('title', 'created_on')
@@ -15,3 +15,4 @@ class CategoryAdmin(admin.ModelAdmin):
 
 admin.site.register(Techguy, TechguyAdmin)
 admin.site.register(Category, CategoryAdmin)
+admin.site.register(Customer)
