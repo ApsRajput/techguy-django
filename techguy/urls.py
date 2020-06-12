@@ -19,4 +19,7 @@ urlpatterns =[
     # Sessions
     path('createsession/', views.create_session),
     path('accesssession', views.access_session),
+
+    # order cruds
+    path('customers/', views.customers, name="customers")
 ]
