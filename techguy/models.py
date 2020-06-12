@@ -65,12 +65,12 @@ class Order(models.Model):
     )
     order_id = models.CharField(max_length=50)
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
-    product = models.ForeignKey(Order, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
     status = models.CharField(choices=ORDER_STATUS, max_length=50)
 
     class Meta:
-        verbose_name = _("Order")
-        verbose_name_plural = _("Orders")
+        verbose_name =  ("Order")
+        verbose_name_plural = ("Orders")
 
     def __str__(self):
         return self.name

@@ -5,6 +5,7 @@ from techguy import views
 urlpatterns =[
     # path("", TechguyListView.as_view(), name="index"),
     # path("<slug:slug>/", TechguyDetailView.as_view(), name="TechguyDetailView"),
+    path("show", views.show, name='show'),
     path("mail/", views.mail, name="mail"),
     path('create', views.create),  
     path('show',views.show),  

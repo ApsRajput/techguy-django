@@ -125,3 +125,6 @@ def access_session(request):
         return HttpResponse(response)
     else:
         return redirect('create/')
+
+def index(request):
+    return render(request, 'order/index.html')
