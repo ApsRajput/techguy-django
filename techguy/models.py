@@ -36,3 +36,37 @@ class Techguy(models.Model):
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
         super(Techguy, self).save(*args, **kwargs)
+
+class Customer(models.Model):
+    name = models.CharField(max_length=10)
+
+class Product(models.Model):
+    PRODUCT_TYPE = (
+        ("Physical", "Physical"),
+        ("Downloadable", "Downloadable")
+    )
+    name = models.CharField(max_length=20)
+    sku = models.CharField(max_length=10)
+    quantity = models.IntegerField()
+    product_type = models.CharField(choices=PRODUCT_TYPE, default="Physical", max_length=50)
+
+class Order(models.Model):
+    ORDER_STATUS = (
+        ("Pending", "Pending"),
+        ("Dispatched", "Dispatched"),
+        ("Delivered", "Delivered")
+    )
+    order_id = models.CharField(max_length=50)
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    product = models.ForeignKey(Order, on_delete=models.CASCADE)
+    status = models.CharField(choices=ORDER_STATUS, max_length=50)
+
+    class Meta:
+        verbose_name = _("Order")
+        verbose_name_plural = _("Orders")
+
+    def __str__(self):
+        return self.name
+
+    # def get_absolute_url(self):
+    #     return reverse("Order_detail", kwargs={"pk": self.pk})
