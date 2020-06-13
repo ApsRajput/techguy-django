@@ -1,0 +1,30 @@
+{% extends 'base.html' %} {% block content %}
+
+<style>
+.font-white{
+    color:#fff;
+    font-weight:600;
+}
+</style>
+<header class="masthead">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class=" col-md-8 col-md-10 mx-auto">
+                <div class="site-heading">
+                    <h3 class="site-heading my-4 mt-3 text-white text-center"> Customers </h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</header> 
+<div class="container">  
+<br>  
+    <div class="form-group row">
+    <img src="https://strucklightning.files.wordpress.com/2019/06/developer.png" style="width:15%;"> 
+        <div class="col-sm-4 text-capitalize mt-5">  
+            <h2 class="font-white">{{ customer.name }}</h3>  
+        </div>  
+    </div> 
+</div>
+{% endblock content %}

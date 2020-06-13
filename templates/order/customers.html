@@ -48,8 +48,9 @@
                     </div>
                 </div>
                 <div class="text-center">
-            <a class="text-info" href="{% url 'update_customer' customer.id %}"> Edit |</a>  
-            <a class="text-info" href="{% url 'delete_customer' customer.id %}"> Delete</a>
+                    <a class="text-info" href="{% url 'detail_customer' customer.pk %}"> View |</a>
+                    <a class="text-info" href="{% url 'update_customer' customer.id %}"> Edit |</a>  
+                    <a class="text-info" href="{% url 'delete_customer' customer.id %}"> Delete</a>
                 </div>
             </div>  
         </div>
