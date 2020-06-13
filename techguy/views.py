@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from techguy.models import *
 from django.core.mail import BadHeaderError, send_mail
 from django.http import HttpResponse, HttpResponseRedirect
-from .forms import ContactForm, TechguyForm
+from .forms import *
 from django.views.generic import ListView, DetailView
 from django.contrib.auth.decorators import login_required
 
@@ -149,3 +149,50 @@ def orders(request):
         "orders" : orders
     }
     return render(request, 'order/orders.html', context)
+
+def create_customer(request):
+    if request.method == 'POST':
+        form = CustomerForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('customers')
+        else:
+            return HttpResponse('Error in fields')
+    else:
+        form = CustomerForm()
+        context = {
+            'form' : form
+        }
+    return render(request, 'order/createcustomer.html', context)
+    
+def update_customer(request, id):
+    customer = Customer.objects.get(id=id)
+
+    if request.method == 'POST':
+        form = CustomerForm(request.POST, instance=customer)
+        if form.is_valid():
+            form.save()
+            return redirect('customers')
+        else:
+            return HttpResponse('Error in fields')
+
+    else:
+        context = {
+            'customer' : customer
+        }
+    return render(request, 'order/updatecustomer.html', context)
+
+
+def delete_customer(request, id):
+    customer = Customer.objects.get(id=id)
+
+    if request.method == 'POST':
+        form = CustomerForm(request.POST, instance=customer)
+        customer.delete()
+        return redirect('customers')
+
+    else:
+        context = {
+            'customer' : customer
+        }
+    return render(request, 'order/deletecustomer.html', context)
