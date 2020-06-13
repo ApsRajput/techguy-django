@@ -138,20 +138,6 @@ def customers(request):
     }
     return render(request, 'order/customers.html', context)
 
-def products(request):
-    products = Product.objects.all()
-    context = {
-        "products" : products
-    }
-    return render(request, 'order/products.html', context)
-
-def orders(request):
-    orders = Order.objects.all()
-    context = {
-        "orders" : orders
-    }
-    return render(request, 'order/orders.html', context)
-
 def customer_detail(request, pk):
     customer = Customer.objects.get(pk=pk)
     orders = Order.objects.filter(customer__name=customer)
@@ -207,3 +193,72 @@ def delete_customer(request, id):
             'customer' : customer
         }
     return render(request, 'order/deletecustomer.html', context)
+
+# Product Operations
+def products(request):
+    products = Product.objects.all()
+    context = {
+        "products" : products
+    }
+    return render(request, 'order/products.html', context)
+
+def product_detail(request, pk):
+    product = Product.objects.get(pk=pk)
+    context = {
+        "product" : product
+    }
+    return render(request, 'order/productdetail.html', context)
+
+def create_product(request):
+    if request.method == 'POST':
+        form = ProductForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('products')
+        else:
+            return HttpResponse('Error in fields')
+    else:
+        form = ProductForm()
+        context = {
+            'form' : form
+        }
+    return render(request, 'order/createproduct.html', context)
+    
+def update_product(request, id):
+    product = Product.objects.get(id=id)
+
+    if request.method == 'POST':
+        form = ProductForm(request.POST, instance=product)
+        if form.is_valid():
+            form.save()
+            return redirect('customers')
+        else:
+            return HttpResponse('Error in fields')
+
+    else:
+        context = {
+            'product' : product
+        }
+    return render(request, 'order/updateproduct.html', context)
+
+def delete_product(request, id):
+    product = Product.objects.get(id=id)
+
+    if request.method == 'POST':
+        form = ProductForm(request.POST, instance=product)
+        product.delete()
+        return redirect('customers')
+
+    else:
+        context = {
+            'product' : product
+        }
+    return render(request, 'order/deleteproduct.html', context)
+
+# Order Operations
+def orders(request):
+    orders = Order.objects.all()
+    context = {
+        "orders" : orders
+    }
+    return render(request, 'order/orders.html', context)
