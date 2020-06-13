@@ -28,5 +28,10 @@ urlpatterns =[
     path('customers/delete/<int:id>', views.delete_customer, name="delete_customer"),
 
     path('products/', views.products, name="products"),
+    path('products/create', views.create_product, name="create_product"),
+    path('products/detail/<str:pk>', views.product_detail, name="detail_product"),
+    path('products/update/<int:id>', views.update_product, name="update_product"),
+    path('products/delete/<int:id>', views.delete_product, name="delete_product"),
+
     path('orders/', views.orders, name="orders")
 ]
