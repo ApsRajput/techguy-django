@@ -26,7 +26,7 @@
                 <div class="site-heading">
                     <h3 class="site-heading my-4 mt-3 text-white text-center"> Customers </h3>
                     <p class="text-light text-center">
-                        <a href="techguy/create">
+                        <a href="{% url 'create_customer' %}">
                             <span class="glyphicon glyphicon-pencil" >ADD</span>
                         </a> 
                     </p>
@@ -36,24 +36,25 @@
     </div>
 </header>
 
-<div class="container">
+<div class="container mb-5">
     <div class="row">
         <!-- Blog Entries Column --> 
         {% for customer in customers %}
-        <div class="col-6 col-sm-4 mt-5 ml-2 p-4 bg-dark rounded text-center">
-            <div class="card mb-4">
-                <div class="card-body">
-                    <h2 class="card-title">{{ customer.name }}</h2>
-                   
-
+        <div class="col-6 col-sm-4 mt-5 text-capitalize">
+            <div class="bg-dark p-4 rounded">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h4 class="card-title">Name : {{ customer.name }}</h4>
+                    </div>
                 </div>
-            </div>
-            <a class="text-info" href="techguy/edit/{{ post.id }}"><span class="glyphicon glyphicon-pencil" >Edit |</span></a>  
-            <a class="text-info" href="techguy/delete/{{ post.id }}"> Update |</a>  
-            <a class="text-info" href="techguy/delete/{{ post.id }}"> Delete</a>  
+                <div class="text-center">
+            <a class="text-info" href="{% url 'update_customer' customer.id %}"> Edit |</a>  
+            <a class="text-info" href="{% url 'delete_customer' customer.id %}"> Delete</a>
+                </div>
+            </div>  
         </div>
         {% endfor %}
         
     </div>
 </div>
-{%endblock%}
+{% endblock %}

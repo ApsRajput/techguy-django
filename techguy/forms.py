@@ -1,6 +1,6 @@
 # sendemail/forms.py
 from django import forms
-from techguy.models import Techguy
+from techguy.models import *
 
 class ContactForm(forms.Form):
     from_email = forms.EmailField(required=True)
@@ -10,4 +10,9 @@ class ContactForm(forms.Form):
 class TechguyForm(forms.ModelForm):
     class Meta:
         model=Techguy
+        fields = "__all__"
+
+class CustomerForm(forms.ModelForm):
+    class Meta:
+        model = Customer
         fields = "__all__"
