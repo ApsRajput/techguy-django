@@ -1,0 +1,68 @@
+{% extends "base.html" %} 
+{% block content %}
+<style>
+    body {
+        font-family: "Roboto", sans-serif;
+        font-size: 18px;
+        background-color: #fdfdfd;
+    }
+    
+    .head_text {
+        color: white;
+    }
+
+    .text-light a{
+        color:#fff;
+        font-weight:600;
+    }
+    
+</style>
+
+<header class="masthead">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class=" col-md-8 col-md-10 mx-auto">
+                <div class="site-heading">
+                    <h3 class="site-heading my-4 mt-3 text-white text-center"> Orders </h3>
+                    <p class="text-light text-center">
+                        <a href="techguy/create">
+                            <span class="glyphicon glyphicon-pencil" >ADD</span>
+                        </a> 
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+<div class="container mb-5">
+    <div class="row">
+        <!-- Blog Entries Column --> 
+        {% for order in orders %}
+        <div class="col-6 col-sm-4 mt-5 text-capitalize">
+            <div class="bg-dark p-4 rounded">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h4 class="card-title">Order ID : {{ order.order_id }}</h4>
+                        <p class="card-title">Customer Name : {{ order.customer }}</p>
+                        <p class="card-title">Product : {{ order.product }}</p>
+                        <p class="card-title">Status : {{ order.status }}</p>
+                    
+
+                    </div>
+                </div>
+                <div class="text-center">
+                    <a class="text-info" href="techguy/edit/{{ order.id }}"><span class="glyphicon glyphicon-pencil" >Edit |</span></a>  
+            <a class="text-info" href="techguy/delete/{{ order.id }}"> Update |</a>  
+            <a class="text-info" href="techguy/delete/{{ order.id }}"> Delete</a>
+                </div>
+            </div>  
+        </div>
+        {% endfor %}
+        
+    </div>
+</div>
+{%endblock%}
