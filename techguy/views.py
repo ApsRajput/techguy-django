@@ -131,11 +131,10 @@ def index(request):
 
 def customers(request):
     customers = Customer.objects.all()
-    orders = customers.order_set.all()
+    # orders = customers.order_set.all()
 
     context = {
-        "customers" : customers,
-        "orders" : orders
+        "customers" : customers
     }
     return render(request, 'order/customers.html', context)
 
@@ -152,6 +151,13 @@ def orders(request):
         "orders" : orders
     }
     return render(request, 'order/orders.html', context)
+
+def customer_detail(request, pk):
+    customer = Customer.objects.get(pk=pk)
+    context = {
+        "customer" : customer
+    }
+    return render(request, 'order/customerdetail.html', context)
 
 def create_customer(request):
     if request.method == 'POST':
