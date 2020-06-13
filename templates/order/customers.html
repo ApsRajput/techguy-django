@@ -48,11 +48,15 @@
                     </div>
                 </div>
                 <div class="text-center">
-            <a class="text-info" href="{% url 'update_customer' customer.id %}"> Edit |</a>  
-            <a class="text-info" href="{% url 'delete_customer' customer.id %}"> Delete</a>
+                    <a class="text-info" href="{% url 'update_customer' customer.id %}"> Edit |</a>  
+                    <a class="text-info" href="{% url 'delete_customer' customer.id %}"> Delete</a>
                 </div>
             </div>  
         </div>
+        {% endfor %}
+        {% for order in orders %}
+
+                        <p class="card-title">Orders : {{ order.order_id }}</p>
         {% endfor %}
         
     </div>
