@@ -154,8 +154,10 @@ def orders(request):
 
 def customer_detail(request, pk):
     customer = Customer.objects.get(pk=pk)
+    orders = Order.objects.filter(customer__name=customer)
     context = {
-        "customer" : customer
+        "customer" : customer,
+        "orders" : orders
     }
     return render(request, 'order/customerdetail.html', context)
 

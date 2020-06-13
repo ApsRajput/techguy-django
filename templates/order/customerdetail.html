@@ -5,6 +5,25 @@
     color:#fff;
     font-weight:600;
 }
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+  color:#fff;
+  font-weight:600;
+  text-align:center;
+}
+th{
+    background:#dddddd;
+    color:#000;
+}
 </style>
 <header class="masthead">
     <div class="overlay"></div>
@@ -12,7 +31,7 @@
         <div class="row">
             <div class=" col-md-8 col-md-10 mx-auto">
                 <div class="site-heading">
-                    <h3 class="site-heading my-4 mt-3 text-white text-center"> Customers </h3>
+                    <h3 class="site-heading my-4 mt-3 text-white text-center"> Customer Profile </h3>
                 </div>
             </div>
         </div>
@@ -23,8 +42,24 @@
     <div class="form-group row">
     <img src="https://strucklightning.files.wordpress.com/2019/06/developer.png" style="width:15%;"> 
         <div class="col-sm-4 text-capitalize mt-5">  
-            <h2 class="font-white">{{ customer.name }}</h3>  
+            <h2 class="font-white">{{ customer.name }}</h3>
         </div>  
     </div> 
+    <table>
+        <tr>
+            <th>Orders ID</td>
+            <th>Product</td>
+            <th>Status</td>
+        </tr>
+
+        {% for order in orders %}
+        <tr>
+                <td>{{ order.order_id }}</td>
+                <td>{{ order.product }}</p>
+                <td>{{ order.status }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
 </div>
 {% endblock content %}
