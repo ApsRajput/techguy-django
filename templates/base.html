@@ -30,7 +30,7 @@
     footer{
         bottom: 0;
         width: -webkit-fill-available;
-        position: absolute;
+        position: fixed;
     }
 </style>
 
@@ -48,10 +48,13 @@
                         <a class="nav-link text-black font-weight-bold" href="/">Home</a>
                     </li>
                     <li class="nav-item text-black">
-                        <a class="nav-link text-black font-weight-bold" href="#">Policy</a>
+                        <a class="nav-link text-black font-weight-bold" href="{% url 'orders' %}">Orders</a>
                     </li>
                     <li class="nav-item text-black">
-                        <a class="nav-link text-black font-weight-bold" href="#">Contact</a>
+                        <a class="nav-link text-black font-weight-bold" href="{% url 'customers' %}">Customers</a>
+                    </li>
+                    <li class="nav-item text-black">
+                        <a class="nav-link text-black font-weight-bold" href="{% url 'products' %}">Products</a>
                     </li>
                     {% if user.is_authenticated %}
                     <li class="nav-item text-black">

@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from techguy.models import Techguy, Category, Customer
+from techguy.models import *
 from django.core.mail import BadHeaderError, send_mail
 from django.http import HttpResponse, HttpResponseRedirect
 from .forms import ContactForm, TechguyForm
@@ -135,3 +135,17 @@ def customers(request):
         "customers" : customers
     }
     return render(request, 'order/customers.html', context)
+
+def products(request):
+    products = Product.objects.all()
+    context = {
+        "products" : products
+    }
+    return render(request, 'order/products.html', context)
+
+def orders(request):
+    orders = Order.objects.all()
+    context = {
+        "orders" : orders
+    }
+    return render(request, 'order/orders.html', context)

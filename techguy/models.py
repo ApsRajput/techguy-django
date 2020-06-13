@@ -60,6 +60,9 @@ class Product(models.Model):
     quantity = models.IntegerField()
     product_type = models.CharField(choices=PRODUCT_TYPE, default="Physical", max_length=50)
 
+    def __str__(self):
+        return self.name
+
 class Order(models.Model):
     ORDER_STATUS = (
         ("Pending", "Pending"),
@@ -76,7 +79,7 @@ class Order(models.Model):
         verbose_name_plural = ("Orders")
 
     def __str__(self):
-        return self.name
+        return self.order_id
 
     # def get_absolute_url(self):
     #     return reverse("Order_detail", kwargs={"pk": self.pk})

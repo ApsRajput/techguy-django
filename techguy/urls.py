@@ -21,5 +21,7 @@ urlpatterns =[
     path('accesssession', views.access_session),
 
     # order cruds
-    path('customers/', views.customers, name="customers")
+    path('customers/', views.customers, name="customers"),
+    path('products/', views.products, name="products"),
+    path('orders/', views.orders, name="orders")
 ]
