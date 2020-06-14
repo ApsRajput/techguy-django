@@ -131,10 +131,9 @@ def index(request):
 
 def customers(request):
     customers = Customer.objects.all()
-    # orders = customers.order_set.all()
 
     context = {
-        "customers" : customers
+        "customers" : customers,
     }
     return render(request, 'order/customers.html', context)
 
