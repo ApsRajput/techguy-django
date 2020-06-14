@@ -18,12 +18,18 @@ $ python3 manage.py migrate
 $ python3 manage.py runserver
 ```
 
-##Django Mail
+## Django Mail
 - less secure app access should be ON
-###Part 1 : Pass argument in route
-###Part 2 : Used django forms for mail
+### Part 1 : Pass argument in route
+### Part 2 : Used django forms for mail
 
-##Auth
--to secure listing from unauth users
+## Auth
+- to secure listing from unauth users
+
+## Ecommerce Listing
+- Customers Listing
+- Products Listing
+- Orders Listing
+- Admin Panel
 
 ## HAPPY CODING
