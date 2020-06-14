@@ -1,0 +1,55 @@
+{% extends 'base.html' %} {% block content %}
+
+<style>
+.font-white{
+    color:#fff;
+    font-weight:600;
+}
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+  color:#fff;
+  font-weight:600;
+  text-align:center;
+}
+th{
+    background:#dddddd;
+    color:#000;
+}
+</style>
+<header class="masthead">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class=" col-md-8 col-md-10 mx-auto">
+                <div class="site-heading">
+                    <h3 class="site-heading my-4 mt-3 text-white text-center"> Product Detail </h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</header> 
+<div class="container">  
+<br>  
+    <div class="form-group row">
+        <div class="col-sm-6 text-capitalize mt-5">
+            <img src="https://image.flaticon.com/icons/png/512/81/81960.png" style="width:50%;">
+        </div>
+        <div class="col-sm-6 text-capitalize mt-5">  
+            <h3 class="font-white">Product Name : {{ product.name }}</h3>
+            <p class="font-white">Product SKU : {{ product.sku }}</p>
+            <p class="font-white">Quantity : {{ product.quantity }}</p>
+            <p class="font-white">Product Type : {{ product.product_type }}</p>
+        </div>  
+    </div>
+
+</div>
+{% endblock content %}

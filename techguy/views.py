@@ -231,7 +231,7 @@ def update_product(request, id):
         form = ProductForm(request.POST, instance=product)
         if form.is_valid():
             form.save()
-            return redirect('customers')
+            return redirect('products')
         else:
             return HttpResponse('Error in fields')
 
@@ -247,7 +247,7 @@ def delete_product(request, id):
     if request.method == 'POST':
         form = ProductForm(request.POST, instance=product)
         product.delete()
-        return redirect('customers')
+        return redirect('products')
 
     else:
         context = {

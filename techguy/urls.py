@@ -20,18 +20,22 @@ urlpatterns =[
     path('createsession/', views.create_session),
     path('accesssession', views.access_session),
 
-    # order cruds
+    # Order Crud Operations
+
+    # Customer Operations
     path('customers/', views.customers, name="customers"),
     path('customers/create', views.create_customer, name="create_customer"),
     path('customers/detail/<str:pk>', views.customer_detail, name="detail_customer"),
     path('customers/update/<int:id>', views.update_customer, name="update_customer"),
     path('customers/delete/<int:id>', views.delete_customer, name="delete_customer"),
 
+    # Product Operations
     path('products/', views.products, name="products"),
     path('products/create', views.create_product, name="create_product"),
     path('products/detail/<str:pk>', views.product_detail, name="detail_product"),
     path('products/update/<int:id>', views.update_product, name="update_product"),
     path('products/delete/<int:id>', views.delete_product, name="delete_product"),
 
+    # Order Operations
     path('orders/', views.orders, name="orders")
 ]
