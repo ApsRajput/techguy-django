@@ -26,7 +26,7 @@
                 <div class="site-heading">
                     <h3 class="site-heading my-4 mt-3 text-white text-center"> Products </h3>
                     <p class="text-light text-center">
-                        <a href="techguy/create">
+                        <a href="{% url "create_product" %}">
                             <span class="glyphicon glyphicon-pencil" >ADD</span>
                         </a> 
                     </p>
@@ -53,9 +53,9 @@
                     </div>
                 </div>
                 <div class="text-center">
-                    <a class="text-info" href="techguy/edit/{{ post.id }}"><span class="glyphicon glyphicon-pencil" >Edit |</span></a>  
-                    <a class="text-info" href="techguy/delete/{{ post.id }}"> Update |</a>  
-                    <a class="text-info" href="techguy/delete/{{ post.id }}"> Delete</a>
+                    <a class="text-info" href="{% url "detail_product" product.pk %}"><span class="glyphicon glyphicon-pencil" >View |</span></a>  
+                    <a class="text-info" href="{% url "update_product" product.id %}"> Edit |</a>  
+                    <a class="text-info" href="{% url "delete_product" product.id %}"> Delete</a>
                 </div>
             </div>  
         </div>
@@ -63,4 +63,4 @@
         
     </div>
 </div>
-{%endblock%}
+{% endblock %}
