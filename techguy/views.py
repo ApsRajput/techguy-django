@@ -261,3 +261,56 @@ def orders(request):
         "orders" : orders
     }
     return render(request, 'order/orders.html', context)
+
+def order_detail(request, pk):
+    order = Order.objects.get(pk=pk)
+    context = {
+        "order" : order
+    }
+    return render(request, 'order/orderdetail.html', context)
+
+def create_order(request):
+    if request.method == 'POST':
+        form = OrderForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('orders')
+        else:
+            return HttpResponse('Error in fields')
+    else:
+        form = OrderForm()
+        context = {
+            'form' : form
+        }
+    return render(request, 'order/createorder.html', context)
+    
+def update_order(request, id):
+    order = Order.objects.get(id=id)
+
+    if request.method == 'POST':
+        form = OrderForm(request.POST, instance=order)
+        if form.is_valid():
+            form.save()
+            return redirect('orders')
+        else:
+            return HttpResponse('Error in fields')
+
+    else:
+        context = {
+            'order' : order
+        }
+    return render(request, 'order/updateorder.html', context)
+
+def delete_order(request, id):
+    order = Order.objects.get(id=id)
+
+    if request.method == 'POST':
+        form = OrderForm(request.POST, instance=order)
+        order.delete()
+        return redirect('products')
+
+    else:
+        context = {
+            'order' : order
+        }
+    return render(request, 'order/deleteorder.html', context)
