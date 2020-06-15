@@ -28,3 +28,7 @@ class OrderForm(forms.ModelForm):
     class Meta:
         model = Order
         fields = "__all__"
+
+class OrderRequestForm(forms.Form):
+    customer = forms.ModelChoiceField(queryset=Customer.objects.all())
+    product = forms.ModelChoiceField(queryset=Product.objects.all())

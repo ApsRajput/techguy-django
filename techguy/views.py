@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from techguy.models import *
 from django.core.mail import BadHeaderError, send_mail
 from django.http import HttpResponse, HttpResponseRedirect
@@ -284,8 +284,8 @@ def create_order(request):
         }
     return render(request, 'order/createorder.html', context)
     
-def update_order(request, id):
-    order = Order.objects.get(id=id)
+def update_order(request, pk):
+    order = Order.objects.get(id=pk)
 
     if request.method == 'POST':
         form = OrderForm(request.POST, instance=order)
@@ -294,11 +294,11 @@ def update_order(request, id):
             return redirect('orders')
         else:
             return HttpResponse('Error in fields')
-
-    else:
-        context = {
-            'order' : order
-        }
+    
+    form = OrderForm(instance=order)
+    context = {
+        'form': form
+    }
     return render(request, 'order/updateorder.html', context)
 
 def delete_order(request, id):
