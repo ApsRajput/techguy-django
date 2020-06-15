@@ -26,7 +26,7 @@
                 <div class="site-heading">
                     <h3 class="site-heading my-4 mt-3 text-white text-center"> Orders </h3>
                     <p class="text-light text-center">
-                        <a href="techguy/create">
+                        <a href="{% url 'create_order' %}">
                             <span class="glyphicon glyphicon-pencil" >ADD</span>
                         </a> 
                     </p>
@@ -55,9 +55,9 @@
                     </div>
                 </div>
                 <div class="text-center">
-                    <a class="text-info" href="techguy/edit/{{ order.id }}"><span class="glyphicon glyphicon-pencil" >Edit |</span></a>  
-            <a class="text-info" href="techguy/delete/{{ order.id }}"> Update |</a>  
-            <a class="text-info" href="techguy/delete/{{ order.id }}"> Delete</a>
+                    <a class="text-info" href="{% url "detail_order" order.id %}"><span class="glyphicon glyphicon-pencil" >View |</span></a>  
+            <a class="text-info" href="{% url "update_order" order.id %}"> Update |</a>  
+            <a class="text-info" href="{% url "delete_order" order.id %}"> Delete</a>
                 </div>
             </div>  
         </div>
