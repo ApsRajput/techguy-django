@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.views.generic.edit import FormView
+from .filters import *
 
 #View Caching
 # from django.views.decorators.cache import cache_page
@@ -210,8 +211,11 @@ def delete_customer(request, id):
 # Product Operations
 def products(request):
     products = Product.objects.all()
+    myFilter = ProductFilter()
+    
     context = {
-        "products" : products
+        "products" : products,
+        "myFilter" : myFilter
     }
     return render(request, 'order/products.html', context)
 
