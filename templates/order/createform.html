@@ -5,6 +5,10 @@
     color:#fff;
     font-weight:600;
 }
+label{
+    color:#fff;
+    font-weight:600;
+}
 </style>
 <header class="masthead">
     <div class="overlay"></div>
@@ -33,14 +37,34 @@
     </div>  
   </div>  
 
-    {% for field in form %}
+    {% comment %} {% for field in form %}
       <div class="form-group row">  
-          <label class="col-sm-2 col-form-label font-white">{{ field.label }} :</label>  
+          <label class="col-sm-2 col-form-label font-white" for={{ field.name }} {{ field.label }} </label>  
           <div class="col-sm-4"> 
               {{ field }}
           </div>
       </div>
-    {% endfor %}
+    {% endfor %} {% endcomment %}
+
+    <table>
+    <thead>
+        {% for form in form %}
+            {% if forloop.first %}
+                {% for field in form %}
+                    <th>{{ field.label_tag }}</th>
+                {% endfor %}
+            {% endif %}
+    </thead>
+    <tbody>
+            <tr>
+                {% for field in form %}
+                    <td>{{ field }}</td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
     <div class="form-group row">  
     <label class="col-sm-1 col-form-label"></label>  
     <div class="col-sm-4">  

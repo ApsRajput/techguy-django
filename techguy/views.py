@@ -3,6 +3,7 @@ from techguy.models import *
 from django.core.mail import BadHeaderError, send_mail
 from django.http import HttpResponse, HttpResponseRedirect
 from .forms import *
+from django.forms import formset_factory
 from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
@@ -230,7 +231,7 @@ def create_product(request):
         else:
             return HttpResponse('Error in fields')
     else:
-        form = ProductForm()
+        form = formset_factory(ProductForm, min_num=1, validate_min=True)
         context = {
             'form' : form
         }
