@@ -3,8 +3,9 @@ from techguy.models import *
 from django.core.mail import BadHeaderError, send_mail
 from django.http import HttpResponse, HttpResponseRedirect
 from .forms import *
-from django.views.generic import ListView, DetailView
 from django.contrib.auth.decorators import login_required
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
 
 #View Caching
 # from django.views.decorators.cache import cache_page
@@ -255,63 +256,45 @@ def delete_product(request, id):
         }
     return render(request, 'order/deleteproduct.html', context)
 
-# Order Operations
-def orders(request):
-    orders = Order.objects.all()
-    context = {
-        "orders" : orders
-    }
-    return render(request, 'order/orders.html', context)
+# Generic View
+class ListOrder(ListView):
+    model = Order
+    context_object_name = 'orders'
+    template_name = 'order/orders.html'
 
-def order_detail(request, pk):
-    order = Order.objects.get(pk=pk)
-    context = {
-        "order" : order
-    }
-    return render(request, 'order/orderdetail.html', context)
+class DetailOrder(DetailView):
+    model = Order
+    context_object_name = 'order'
+    template_name = 'order/orderdetail.html'
 
-def create_order(request):
-    if request.method == 'POST':
-        form = OrderForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('orders')
-        else:
-            return HttpResponse('Error in fields')
-    else:
-        form = OrderForm()
-        context = {
-            'form' : form
-        }
-    return render(request, 'order/createform.html', context)
-    
-def update_order(request, pk):
-    order = Order.objects.get(id=pk)
+class CreateOrder(CreateView):
+    model = Order
+    fields = '__all__'
+    context_object_name = 'form'
+    template_name = 'order/createform.html'
 
-    if request.method == 'POST':
-        form = OrderForm(request.POST, instance=order)
-        if form.is_valid():
-            form.save()
-            return redirect('orders')
-        else:
-            return HttpResponse('Error in fields')
-    
-    form = OrderForm(instance=order)
-    context = {
-        'form': form
-    }
-    return render(request, 'order/updateform.html', context)
+class UpdateOrder(UpdateView):
+    model = Order
+    fields = '__all__'
+    context_object_name = 'form'
+    template_name = 'order/updateform.html'
+    success_url = reverse_lazy('orders')
 
-def delete_order(request, id):
-    order = Order.objects.get(id=id)
+class DeleteOrder(DeleteView):
+    model = Order
+    success_url = reverse_lazy('orders')
+    template_name = 'order/deleteorder.html'
 
-    if request.method == 'POST':
-        form = OrderForm(request.POST, instance=order)
-        order.delete()
-        return redirect('products')
+# def delete_order(request, id):
+#     order = Order.objects.get(id=id)
 
-    else:
-        context = {
-            'order' : order
-        }
-    return render(request, 'order/deleteorder.html', context)
+#     if request.method == 'POST':
+#         form = OrderForm(request.POST, instance=order)
+#         order.delete()
+#         return redirect('products')
+
+#     else:
+#         context = {
+#             'order' : order
+#         }
+#     return render(request, 'order/deleteorder.html', context)
