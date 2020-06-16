@@ -32,30 +32,15 @@
     <h2 class="font-white">Enter Details</h3>  
     </div>  
   </div>  
-  <div class="form-group row">  
-    <label class="col-sm-2 col-form-label font-white">Order ID :</label>  
-    <div class="col-sm-4">  
-      {{ form.order_id }}  
-    </div>  
-  </div>
-  <div class="form-group row">  
-    <label class="col-sm-2 col-form-label font-white">Customer :</label>  
-    <div class="col-sm-4">  
-      {{ form.customer }}  
-    </div>  
-  </div>
-  <div class="form-group row">  
-    <label class="col-sm-2 col-form-label font-white">Product :</label>  
-    <div class="col-sm-4">  
-      {{ form.product }}  
-    </div>  
-  </div>
-  <div class="form-group row">  
-    <label class="col-sm-2 col-form-label font-white">Status :</label>  
-    <div class="col-sm-4">  
-      {{ form.status }}  
-    </div>  
-  </div>
+
+    {% for field in form %}
+      <div class="form-group row">  
+          <label class="col-sm-2 col-form-label font-white">{{ field.label }} :</label>  
+          <div class="col-sm-4"> 
+              {{ field }}
+          </div>
+      </div>
+    {% endfor %}
     <div class="form-group row">  
     <label class="col-sm-1 col-form-label"></label>  
     <div class="col-sm-4">  

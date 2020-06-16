@@ -159,7 +159,7 @@ def create_customer(request):
         context = {
             'form' : form
         }
-    return render(request, 'order/createcustomer.html', context)
+    return render(request, 'order/createform.html', context)
     
 def update_customer(request, id):
     customer = Customer.objects.get(id=id)
@@ -172,11 +172,11 @@ def update_customer(request, id):
         else:
             return HttpResponse('Error in fields')
 
-    else:
-        context = {
-            'customer' : customer
-        }
-    return render(request, 'order/updatecustomer.html', context)
+    form = CustomerForm(instance=customer)
+    context = {
+        'form' : form
+    }
+    return render(request, 'order/updateform.html', context)
 
 
 def delete_customer(request, id):
@@ -221,7 +221,7 @@ def create_product(request):
         context = {
             'form' : form
         }
-    return render(request, 'order/createproduct.html', context)
+    return render(request, 'order/createform.html', context)
     
 def update_product(request, id):
     product = Product.objects.get(id=id)
@@ -234,11 +234,12 @@ def update_product(request, id):
         else:
             return HttpResponse('Error in fields')
 
-    else:
-        context = {
-            'product' : product
-        }
-    return render(request, 'order/updateproduct.html', context)
+    form = ProductForm(instance=product)
+    context = {
+        'form' : form
+    }
+
+    return render(request, 'order/updateform.html', context)
 
 def delete_product(request, id):
     product = Product.objects.get(id=id)
@@ -282,7 +283,7 @@ def create_order(request):
         context = {
             'form' : form
         }
-    return render(request, 'order/createorder.html', context)
+    return render(request, 'order/createform.html', context)
     
 def update_order(request, pk):
     order = Order.objects.get(id=pk)
@@ -299,7 +300,7 @@ def update_order(request, pk):
     context = {
         'form': form
     }
-    return render(request, 'order/updateorder.html', context)
+    return render(request, 'order/updateform.html', context)
 
 def delete_order(request, id):
     order = Order.objects.get(id=id)
