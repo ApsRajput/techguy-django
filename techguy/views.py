@@ -6,6 +6,7 @@ from .forms import *
 from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
+from django.views.generic.edit import FormView
 
 #View Caching
 # from django.views.decorators.cache import cache_page
@@ -81,6 +82,17 @@ def mail(request):
                 return HttpResponse('Invalid header found.')
             return HttpResponseRedirect('/techguy/mail/')
     return render(request, "contact.html", {'form': form})
+
+class ContactForm(FormView):
+    template_name = 'contact.html'
+    form_class = ContactForm
+    success_url = '/techguy/mail/'
+
+    def form_valid(self, form):
+        # This method is called when valid form data has been POSTed.
+        # It should return an HttpResponse.
+        form.send_email()
+        return super().form_valid(form)
 
 # using cookie
 def showcookie(request):
