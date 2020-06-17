@@ -9,7 +9,7 @@
     .card {
         box-shadow: 0 16px 48px #E3E7EB;
     }
-    .text-color{
+    .text-color, .errorlist{
       font-weight:600;
       color:#fff;
     }
@@ -38,7 +38,7 @@
 
 
   {% if form.errors %}
-    <p class="text-color">Your username and password didn't match. Please try again.</p>
+    <p class="text-color">{{form.errors}}</p>
   {% endif %}
   
   {% if next %}
@@ -50,7 +50,7 @@
     {% endif %}
   {% endif %}
   
-  <form method="post" action="{% url 'login' %}">
+  <form method="post" action="">
     {% csrf_token %}
     <table>
       <tr>
@@ -58,18 +58,23 @@
         <td>{{ form.username }}</td>
       </tr>
       <tr>
-        <td class="text-color">{{ form.password.label_tag }}</td>
-        <td>{{ form.password }}</td>
+        <td class="text-color">{{ form.email.label_tag }}</td>
+        <td>{{ form.email }}</td>
+      </tr>
+      <tr>
+        <td class="text-color">{{ form.password1.label_tag }}</td>
+        <td>{{ form.password1 }}</td>
+      </tr>
+      <tr>
+        <td class="text-color">{{ form.password2.label_tag }}</td>
+        <td>{{ form.password2 }}</td>
       </tr>
     </table>
-    <input type="submit" value="login" />
+    <input class="btn btn-primary" type="submit" value="login" />
     <input type="hidden" name="next" value="{{ next }}" />
   </form>
-  
-  {# Assumes you setup the password_reset view in your URLconf #}
-  <p><a href="{% url 'password_reset' %}">Lost password?</a></p>
-  <div class="text-color">Don't have an Account? <a href="{% url 'register' %}" class="ml-2">Register</a></div>
 
+  <div class="text-color">Already have an account? <a href="{% url 'login' %}" class="ml-2">Login</a></div>
 
         </div>
         
