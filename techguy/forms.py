@@ -1,6 +1,7 @@
 # sendemail/forms.py
 from django import forms
 from techguy.models import *
+from django.contrib.auth.forms import UserCreationForm
 
 class ContactForm(forms.Form):
     from_email = forms.EmailField(required=True)
@@ -35,3 +36,9 @@ class OrderForm(forms.ModelForm):
 class OrderRequestForm(forms.Form):
     customer = forms.ModelChoiceField(queryset=Customer.objects.all())
     product = forms.ModelChoiceField(queryset=Product.objects.all())
+
+
+class CreateUserForm(UserCreationForm):
+	class Meta:
+		model = User
+		fields = ['username', 'email', 'password1', 'password2']

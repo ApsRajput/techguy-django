@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from techguy.models import *
+from .models import *
 from django.core.mail import BadHeaderError, send_mail
 from django.http import HttpResponse, HttpResponseRedirect
 from .forms import *
@@ -10,6 +10,19 @@ from django.urls import reverse_lazy
 from django.views.generic.edit import FormView
 from .filters import *
 from .decorators import *
+
+@unauthenticated_user
+def register(request):
+
+	form = CreateUserForm()
+	if request.method == 'POST':
+		form = CreateUserForm(request.POST)
+		if form.is_valid():
+			user = form.save()
+			return redirect('login')
+
+	context = {'form':form}
+	return render(request, 'registration/register.html', context)
 
 #View Caching
 # from django.views.decorators.cache import cache_page
