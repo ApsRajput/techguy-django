@@ -9,6 +9,7 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from django.urls import reverse_lazy
 from django.views.generic.edit import FormView
 from .filters import *
+from .decorators import *
 
 #View Caching
 # from django.views.decorators.cache import cache_page
@@ -144,6 +145,7 @@ def access_session(request):
 def index(request):
     return render(request, 'order/index.html')
 
+@admin_only
 def customers(request):
     customers = Customer.objects.all()
 
