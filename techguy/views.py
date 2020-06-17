@@ -211,7 +211,7 @@ def delete_customer(request, id):
 # Product Operations
 def products(request):
     products = Product.objects.all()
-    myFilter = ProductFilter()
+    myFilter = ProductFilter(request.GET, queryset=Product.objects.all())
     
     context = {
         "products" : products,

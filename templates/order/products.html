@@ -11,7 +11,7 @@
         color: white;
     }
 
-    .text-light a{
+    .text-light a, label{
         color:#fff;
         font-weight:600;
     }
@@ -36,31 +36,22 @@
     </div>
 </header>
 
-                    <form method="get">
-                    {{myFilter.form}}
-
-                <button class="btn btn-success">Search</button>  
-                    </form>
-<div class="container mb-5">
-    <div class="row">
-        <!-- Blog Entries Column --> 
-        <div class="col-6 col-sm-4 mt-5 text-capitalize">
-            <div class="bg-dark p-4 rounded">
-                <div class="card mb-4">
-                    <div class="card-body">
-
-                    </div>
-                </div>
-            </div>  
-        </div>
-        
+<form method="get">
+<div class="form-group row mt-5">  
+    <div class="col-sm-4"> 
     </div>
-</div>
+    <div class="col-sm-4 text-center">  
+    {{myFilter.form.as_p}}
+    <input class="btn btn-success" type="submit" /> 
+        </div>  
+</div> 
+</form>
+
 
 <div class="container mb-5">
     <div class="row">
         <!-- Blog Entries Column --> 
-        {% for product in products %}
+        {% for product in myFilter.qs %}
         <div class="col-6 col-sm-4 mt-5 text-capitalize">
             <div class="bg-dark p-4 rounded">
                 <div class="card mb-4">
