@@ -7,6 +7,9 @@ class ContactForm(forms.Form):
     subject = forms.CharField(required=True)
     message = forms.CharField(widget=forms.Textarea, required=True)
 
+    def send_email(self):
+        pass
+
 class TechguyForm(forms.ModelForm):
     class Meta:
         model=Techguy
