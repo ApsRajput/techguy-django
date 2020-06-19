@@ -14,15 +14,19 @@ from .decorators import *
 @unauthenticated_user
 def register(request):
 
-	form = CreateUserForm()
-	if request.method == 'POST':
-		form = CreateUserForm(request.POST)
-		if form.is_valid():
-			user = form.save()
-			return redirect('login')
+    form = CreateUserForm()
+    if request.method == 'POST':
+        form = CreateUserForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(username=username, password=password)
+            login(request, user)
+            return redirect('login')
 
-	context = {'form':form}
-	return render(request, 'registration/register.html', context)
+    context = {'form':form}
+    return render(request, 'registration/register.html', context)
 
 #View Caching
 # from django.views.decorators.cache import cache_page

@@ -17,7 +17,7 @@ def create_profile(sender, instance, created, **kwargs):
 def update_profile(sender, instance, created, **kwargs):
 	
 	if created == False:
-		instance.profile.save()
+		instance.customer.save()
 		print('Profile updated!')
 
 
