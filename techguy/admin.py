@@ -12,6 +12,11 @@ class TechguyAdmin(admin.ModelAdmin):
 class CategoryAdmin(admin.ModelAdmin):
     pass
 
+class CustomerAdmin(admin.ModelAdmin):
+    list_display = ('name', 'email')
+    # list_filter = ("status",)
+    search_fields = ['name']
+
 class ProductAdmin(admin.ModelAdmin):
     list_display = ('name', 'quantity', 'product_type')
     # list_filter = ("status",)
@@ -24,6 +29,6 @@ class OrderAdmin(admin.ModelAdmin):
 
 admin.site.register(Techguy, TechguyAdmin)
 admin.site.register(Category, CategoryAdmin)
-admin.site.register(Customer)
+admin.site.register(Customer, CustomerAdmin)
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Order, OrderAdmin)
